@@ -1,40 +1,4 @@
-import random
-import tkinter as tk
-from tkinter import messagebox
 
-def get_user_choice(choice):
-    """Обрабатывает выбор пользователя."""
-    global user_choice
-    user_choice = choice
-    update_labels()
-
-def get_computer_choice():
-    """Генерирует случайный выбор компьютера."""
-    choices = ["камень", "ножницы", "бумага"]
-    return random.choice(choices)
-
-def determine_winner():
-    """Определяет победителя и обновляет счет."""
-    global computer_choice, winner, user_score, comp_score
-    computer_choice = get_computer_choice()
-    if user_choice == computer_choice:
-        winner = "Ничья!"
-    elif (user_choice == "камень" and computer_choice == "ножницы") or \
-         (user_choice == "ножницы" and computer_choice == "бумага") or \
-         (user_choice == "бумага" and computer_choice == "камень"):
-        winner = "Вы выиграли!"
-        user_score += 1
-    else:
-        winner = "Компьютер выиграл!"
-        comp_score += 1
-    update_labels()
-    score_label.config(text=f"Счет: Вы - {user_score}, Компьютер - {comp_score}")
-
-def update_labels():
-    """Обновляет текст на метках."""
-    user_label.config(text=f"Вы выбрали: {user_choice}")
-    comp_label.config(text=f"Компьютер выбрал: {computer_choice}")
-    result_label.config(text=winner)
 
 # Создаем главное окно
 window = tk.Tk()
